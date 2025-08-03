@@ -1,0 +1,14 @@
+/* Define o nosso layout de grelha */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de tamanho igual */
+  gap: 1.5rem; /* Define o espaçamento entre os cards */
+}
+
+/* Adiciona um estilo básico de "card" aos artigos */
+article {
+  border: 1px solid #333;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #1e242b; /* Um fundo um pouco mais claro que o do Pico dark mode */
+}

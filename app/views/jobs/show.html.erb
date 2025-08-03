@@ -1,0 +1,33 @@
+<article>
+  <header>
+    <h1><%= @job.title %></h1>
+    <h2><%= @job.company_name %></h2>
+    <h3><%= @job.location %></h3>
+  </header>
+
+  <% if @job.company_logo_url.present? %>
+    <img src="<%= @job.company_logo_url %>" alt="<%= @job.company_name %> logo" style="max-width: 150px; height: auto;">
+  <% end %>
+
+  <section>
+    <strong>Description:</strong>
+    <p><%= @job.description %></p>
+  </section>
+
+  <section>
+    <strong>Apply At:</strong>
+    <p><a href="<%= @job.job_url %>" target="_blank"><%= @job.job_url %></a></p>
+  </section>
+
+  <% if @job.company_website.present? %>
+    <section>
+      <strong>Company Website:</strong>
+      <p><a href="<%= @job.company_website %>" target="_blank"><%= @job.company_website %></a></p>
+    </section>
+  <% end %>
+
+  <footer>
+    <%= link_to "Edit", edit_job_path(@job), class: 'secondary' %> |
+    <%= link_to "Back to jobs", jobs_path %>
+  </footer>
+</article>

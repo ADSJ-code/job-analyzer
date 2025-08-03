@@ -1,0 +1,36 @@
+<hgroup>
+  <h1>Job Analyzer</h1>
+  <h2>Vagas de Ruby on Rails Encontradas</h2>
+</hgroup>
+
+<div class="grid"
+  <% @jobs.each do |job| %>
+    <article>
+      <header>
+        <strong><%= job.title %></strong>
+      </header>
+
+      <%# Mostra o logo da empresa apenas se ele foi encontrado pelo nosso robô %>
+      <% if job.company_logo_url != "Não encontrado" %>
+        <img 
+          src="<%= job.company_logo_url %>" 
+          alt="<%= job.company_name %> logo" 
+          style="max-width: 80px; height: auto; margin-bottom: 1rem; border-radius: 4px;"
+        >
+      <% end %>
+
+      <p>
+        <strong>Empresa:</strong> <%= job.company_name %><br>
+        <strong>Localização:</strong> <%= job.location %>
+      </p>
+
+      <footer>
+        <%= link_to "Ver Detalhes", job_path(job), role: "button", class: "outline" %>
+      </footer>
+    </article>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to "Adicionar Nova Vaga (Manual)", new_job_path %>
