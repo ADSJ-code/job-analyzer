@@ -13,16 +13,6 @@ Este projeto foi construído para demonstrar a capacidade de orquestração de m
 
 ---
 
-## Arquitetura do Sistema
-
-A aplicação utiliza uma Rake task para o processo de ingestão e enriquecimento de dados. A tarefa opera em duas fases:
-1.  **Busca:** Uma chamada inicial à API do Google Jobs da SerpApi para obter uma lista de vagas.
-2.  **Enriquecimento:** Para cada vaga retornada, uma segunda chamada à API de Busca Google da SerpApi é realizada para obter dados do Knowledge Graph da empresa, como website e imagens.
-
-Os dados consolidados são persistidos numa base de dados MongoDB, e a interface web, construída com o padrão MVC do Rails, serve para exibir os resultados finais ao utilizador.
-
----
-
 ## Stack de Tecnologias
 
 * **Framework:** Ruby on Rails 8.0.2
@@ -30,54 +20,7 @@ Os dados consolidados são persistidos numa base de dados MongoDB, e a interface
 * **Banco de Dados:** MongoDB, com Mongoid ODM
 * **Fonte de Dados Externos:** [SerpApi Google Jobs API](https://serpapi.com/) & [Google Search API](https://serpapi.com/)
 * **Estilo Visual:** Pico.css
-* **Ambiente de Desenvolvimento:** Docker (para o serviço MongoDB)
-
----
-
-## Pré-requisitos
-
-Para executar este projeto localmente, certifique-se de que possui:
-* Ruby (gerenciado via `rbenv` ou similar)
-* Bundler
-* Docker Desktop
-* Uma chave de API da [SerpApi](https://serpapi.com/)
-
----
-
-## Configuração e Instalação
-
-Siga os passos abaixo para configurar o ambiente de desenvolvimento.
-
-1.  **Clone o repositório:**
-    ```bash
-    git clone [https://github.com/ADSJ-code/job-analyzer.git](https://github.com/ADSJ-code/job-analyzer.git)
-    ```
-
-2.  **Navegue para o diretório do projeto:**
-    ```bash
-    cd job-analyzer
-    ```
-
-3.  **Instale as dependências do Ruby:**
-    ```bash
-    bundle install
-    ```
-
-4.  **Configure as credenciais:**
-    Execute o comando abaixo para abrir o editor de credenciais do Rails:
-    ```bash
-    bin/rails credentials:edit
-    ```
-    Insira sua chave da SerpApi no seguinte formato e salve o arquivo:
-    ```yaml
-    serpapi:
-      api_key: "SUA_CHAVE_DA_SERPAPI_AQUI"
-    ```
-
-5.  **Inicie o serviço do MongoDB via Docker:**
-    ```bash
-    docker run --name mongodb -d -p 27017:27017 mongo
-    ```
+* **Ambiente de Desenvolvimento:** Docker
 
 ---
 
