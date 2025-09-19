@@ -63,7 +63,7 @@ group :test do
 end
 
 # Conector para o banco de dados MongoDB
-gem 'mongoid', '~> 8.0'
+gem 'mongoid', '~> 9.0'
 
 # Conector para a API da SerpApi
 gem 'google_search_results'
