@@ -11,6 +11,5 @@ Bundler.require(*Rails.groups)
 module JobAnalyzer
   class Application < Rails::Application
     config.load_defaults 8.0
-    config.i_am_not_a_cache_bug = 1
   end
 end
