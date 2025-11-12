@@ -52,11 +52,11 @@ RUN bundle update net-pop && bundle install && \
     bundle exec bootsnap precompile --gemfile
 
 # Copy application code
-COPY README.md ./
-COPY . ./
+COPY README.md .  # Linha do cache buster
+COPY . .
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-# CORREÇÃO FINAL: COMENTAMOS A LINHA QUE ESTAVA DANDO ERRO PARA QUE O SERVIDOR SUBA.
+# WORKAROUND: Comentamos esta linha para evitar o crash do ActionCable
 # RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
@@ -81,8 +81,6 @@ RUN groupadd --system --gid 1000 rails && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
 
-# Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
+# ENTRYPOINT padrão foi REMOVIDO
 # Start the server by default, this can be overwritten at runtime
 CMD ["bin/rails", "server"]
