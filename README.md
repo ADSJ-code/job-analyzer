@@ -5,36 +5,34 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-4.7.1-47A248.svg?style=for-the-badge&logo=mongodb)
 ![Docker](https://img.shields.io/badge/Docker-20.10.21-2496ED.svg?style=for-the-badge&logo=docker)
 
-## Sumário
+## Summary
 
-O Job Analyzer é uma aplicação web full-stack desenvolvida em Ruby on Rails. A sua função principal é consumir a API do Google Jobs (através da SerpApi) para buscar vagas de emprego e, em seguida, orquestrar chamadas de API adicionais para enriquecer os dados das empresas contratantes, buscando informações como o website oficial e o logo.
+Job Analyzer is a full-stack Ruby on Rails application. Its core function is to consume the Google Jobs API (via SerpApi) to find job listings and then orchestrate additional API calls to enrich the hiring company's data, fetching information like official websites and logos.
 
-Este projeto foi construído para demonstrar a capacidade de orquestração de múltiplas APIs e o enriquecimento de dados, uma competência chave no desenvolvimento de aplicações orientadas a dados.
+This project demonstrates the ability to orchestrate multiple APIs and perform data enrichment, a key skill in data-driven application development.
 
 ---
 
-## Stack de Tecnologias
+## Tech Stack
 
 * **Framework:** Ruby on Rails 8.0.2
-* **Linguagem:** Ruby 3.3.3
-* **Banco de Dados:** MongoDB, com Mongoid ODM
-* **Fonte de Dados Externos:** [SerpApi Google Jobs API](https://serpapi.com/) & [Google Search API](https://serpapi.com/)
-* **Estilo Visual:** Pico.css
-* **Ambiente de Desenvolvimento:** Docker
+* **Language:** Ruby 3.3.3
+* **Database:** MongoDB (with Mongoid ODM)
+* **External Data Source:** [SerpApi Google Jobs API](https://serpapi.com/) & [Google Search API](https://serpapi.com/)
+* **Styling:** Pico.css
+* **Environment:** Docker & Docker Compose
 
 ---
 
-## Utilização
+## How to Run
 
-### 1. Importação e Enriquecimento de Dados
-Para popular o banco de dados com as vagas de emprego, execute a Rake task:
-```bash
-bin/rails job_importer:find_and_enrich
-```
+This project is fully containerized.
 
-### 2. Iniciar a Aplicação
-Com os dados no banco, inicie o servidor Rails:
+**1. Clone the Repository**
+`git clone https://github.com/ADSJ-code/job-analyzer.git`
+
+**2. Set Up Environment**
+Navigate into the directory and create your `.env` file:
 ```bash
-bin/rails server
-```
-Acesse a aplicação no seu navegador em `http://localhost:3000/jobs`.
+cd job-analyzer
+cp .env.example .env

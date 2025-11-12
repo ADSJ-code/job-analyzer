@@ -1,16 +1,20 @@
-# lib/tasks/job_importer.rake
-
 namespace :job_importer do
   desc "Busca por vagas de emprego e enriquece os dados das empresas"
   task find_and_enrich: :environment do
     puts "🤖 Iniciando o robô de vagas..."
 
-    # Fase 1: Buscar Vagas
-    puts "--- Fase 1: Procurando por vagas de 'Ruby on Rails developer'..."
+    query = ENV.fetch('JOB_QUERY', 'Ruby on Rails developer')
+    gl_location = ENV.fetch('JOB_LOCATION_GL', 'br')
+    hl_language = ENV.fetch('JOB_LOCATION_HL', 'pt')
+
+    puts "--- Fase 1: Procurando por vagas de '#{query}' (Local: #{gl_location}, Idioma: #{hl_language})..."
+    
     jobs_search_params = {
-      q: "Ruby on Rails developer",
+      q: query,
       engine: "google_jobs",
-      api_key: Rails.application.credentials.serpapi[:api_key]
+      gl: gl_location,
+      hl: hl_language,
+      api_key: ENV['SERPAPI_KEY']
     }
     jobs_search = SerpApiSearch.new(jobs_search_params)
     jobs_results = jobs_search.get_hash
@@ -22,7 +26,6 @@ namespace :job_importer do
 
     puts "✅ Encontradas #{jobs_results[:jobs_results].count} vagas. Iniciando enriquecimento..."
 
-    # Fase 2: Enriqueçer Cada Vaga
     jobs_results[:jobs_results].each do |job_data|
       apply_options = job_data[:apply_options]
       unless apply_options && !apply_options.empty?
@@ -40,11 +43,12 @@ namespace :job_importer do
 
       puts "--- enriquecendo dados para: #{job.company_name}"
 
-      # ## CORREÇÃO FINALÍSSIMA AQUI ##
       company_search_params = {
         q: "#{job.company_name} official website logo",
-        engine: 'google', # Adicionamos o engine para a busca da empresa
-        api_key: Rails.application.credentials.serpapi[:api_key]
+        engine: 'google',
+        gl: gl_location,
+        hl: hl_language,
+        api_key: ENV['SERPAPI_KEY']
       }
       company_search = SerpApiSearch.new(company_search_params)
       company_results = company_search.get_hash
