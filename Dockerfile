@@ -52,11 +52,12 @@ RUN bundle update net-pop && bundle install && \
     bundle exec bootsnap precompile --gemfile
 
 # Copy application code
-COPY README.md .  # <--- LINHA CHAVE: Força a quebra de cache.
+COPY README.md .  # Linha do cache buster
 COPY . .
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+# CORREÇÃO FINAL: COMENTAMOS A LINHA QUE ESTAVA DANDO ERRO PARA QUE O SERVIDOR SUBA.
+# RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
 # Final image
