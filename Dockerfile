@@ -55,9 +55,8 @@ RUN bundle update net-pop && bundle install && \
 COPY README.md ./
 COPY . ./
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-# WORKAROUND: Comentamos esta linha para evitar o crash do ActionCable
-# RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+ Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
 # Final image
