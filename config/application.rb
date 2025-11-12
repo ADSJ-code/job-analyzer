@@ -1,5 +1,6 @@
 require_relative "boot"
 
+# Pule o ActiveRecord e Action Cable/Action Text
 require "action_controller/railtie"
 require "action_view/railtie"
 require "action_mailer/railtie"
