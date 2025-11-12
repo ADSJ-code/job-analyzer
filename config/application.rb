@@ -11,5 +11,7 @@ Bundler.require(*Rails.groups)
 module JobAnalyzer
   class Application < Rails::Application
     config.load_defaults 8.0
+  
+    config.action_cable.adapter = :async
   end
 end
