@@ -52,8 +52,8 @@ RUN bundle update net-pop && bundle install && \
     bundle exec bootsnap precompile --gemfile
 
 # Copy application code
-COPY README.md .  # Linha do cache buster
-COPY . .
+COPY README.md ./
+COPY . ./
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 # CORREÇÃO FINAL: COMENTAMOS A LINHA QUE ESTAVA DANDO ERRO PARA QUE O SERVIDOR SUBA.
