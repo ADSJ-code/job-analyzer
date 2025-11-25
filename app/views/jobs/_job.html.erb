@@ -2,7 +2,8 @@
   <header>
     <div class="grid">
       <div style="flex: 0 0 80px; display: flex; align-items: center; justify-content: center;">
-        <% if job.company_logo_url.present? && job.company_logo_url.start_with?('http') %>
+        <% if job.company_logo_url.present? && job.company_logo_url.to_s.start_with?('http') %>
+          <%# O referrerpolicy é o segredo para a imagem aparecer %>
           <%= image_tag job.company_logo_url, 
                 alt: "#{job.company_name} logo", 
                 style: "max-width: 100%; max-height: 60px; border-radius: 4px;", 
