@@ -1,33 +1,46 @@
-<article>
+<article class="container">
   <header>
-    <h1><%= @job.title %></h1>
-    <h2><%= @job.company_name %></h2>
-    <h3><%= @job.location %></h3>
+    <div class="grid">
+      <div style="flex: 0 0 120px;">
+        <% if @job.company_logo_url.present? && @job.company_logo_url.start_with?('http') %>
+          <%= image_tag @job.company_logo_url, alt: "#{@job.company_name} logo", style: "max-width: 100px; border-radius: 8px;" %>
+        <% else %>
+          <div style="width: 100px; height: 100px; background: #eee; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 2rem;">🏢</div>
+        <% end %>
+      </div>
+
+      <div>
+        <hgroup>
+          <h1><%= @job.title %></h1>
+          <h2><%= @job.company_name %></h2>
+        </hgroup>
+        <p><small>📍 <%= @job.location %></small></p>
+      </div>
+    </div>
   </header>
 
-  <% if @job.company_logo_url.present? %>
-    <img src="<%= @job.company_logo_url %>" alt="<%= @job.company_name %> logo" style="max-width: 150px; height: auto;">
-  <% end %>
-
-  <section>
-    <strong>Description:</strong>
-    <p><%= @job.description %></p>
+  <section style="padding: 20px; background: #f9f9f9; border-radius: 8px; border: 1px solid #e5e5e5;">
+    <h5>Job Description</h5>
+    <div class="description">
+      <%= simple_format(@job.description) %>
+    </div>
   </section>
 
-  <section>
-    <strong>Apply At:</strong>
-    <p><a href="<%= @job.job_url %>" target="_blank"><%= @job.job_url %></a></p>
-  </section>
+  <footer class="grid">
+    <% if @job.job_url.present? %>
+      <a href="<%= @job.job_url %>" role="button" target="_blank" rel="noopener noreferrer">
+        🚀 Apply on <%= @job.company_name %>
+      </a>
+    <% end %>
 
-  <% if @job.company_website.present? %>
-    <section>
-      <strong>Company Website:</strong>
-      <p><a href="<%= @job.company_website %>" target="_blank"><%= @job.company_website %></a></p>
-    </section>
-  <% end %>
-
-  <footer>
-    <%= link_to "Edit", edit_job_path(@job), class: 'secondary' %> |
-    <%= link_to "Back to jobs", jobs_path %>
+    <% if @job.company_website.present? %>
+      <a href="<%= @job.company_website %>" role="button" class="secondary outline" target="_blank" rel="noopener noreferrer">
+        🌐 Company Website
+      </a>
+    <% end %>
   </footer>
+
+  <div style="margin-top: 20px; text-align: center;">
+    <%= link_to "← Back to jobs", jobs_path %>
+  </div>
 </article>

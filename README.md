@@ -54,6 +54,12 @@ git clone https://github.com/ADSJ-code/job-analyzer.git
 **2. Configure Environment Variables Create the .env file from the template:**
 
 ```Bash
+cd job-analyzer
+```
+
+and
+
+```Bash
 cp .env.example .env
 ```
 **⚠️ CRITICAL STEP**: Open the .env file and paste your SerpApi Key. You can get a free key at SerpApi.com.
