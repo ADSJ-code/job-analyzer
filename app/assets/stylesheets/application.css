@@ -1,14 +1,202 @@
-/* Define o nosso layout de grelha */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de tamanho igual */
-  gap: 1.5rem; /* Define o espaçamento entre os cards */
+:root {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --border-color: #334155;
 }
 
-/* Adiciona um estilo básico de "card" aos artigos */
-article {
-  border: 1px solid #333;
-  padding: 1.5rem;
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #60a5fa, #a855f7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.job-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.logo-wrapper {
+  width: 56px;
+  height: 56px;
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 4px;
+}
+
+.company-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.logo-fallback {
+  font-size: 24px;
+}
+
+.source-tag {
+  font-size: 0.75rem;
+  background: #334155;
+  color: #cbd5e1;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.card-body {
+  flex-grow: 1;
+  margin-bottom: 24px;
+}
+
+.job-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.company-name {
+  color: var(--text-muted);
+  font-weight: 500;
+  margin: 0 0 16px 0;
+}
+
+.meta-info {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.location-badge {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btn {
+  padding: 10px 16px;
   border-radius: 8px;
-  background-color: #1e242b; /* Um fundo um pouco mais claro que o do Pico dark mode */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-main);
+  color: var(--text-main);
+}
+
+.btn-disabled {
+  background-color: #334155;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px dashed var(--border-color);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.instruction {
+  background: #000;
+  padding: 10px;
+  border-radius: 6px;
+  display: inline-block;
+  font-family: monospace;
+  margin-top: 20px;
+  color: #4ade80;
 }

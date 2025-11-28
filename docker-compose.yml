@@ -1,19 +1,25 @@
 services:
+  db:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+
   web:
     build: .
+    command: bash -c "rm -f tmp/pids/server.pid && ./bin/rails server -b 0.0.0.0"
     volumes:
       - .:/rails
     ports:
       - "3000:3000"
+    # AQUI ESTÁ A MUDANÇA IMPORTANTE:
+    # Isso carrega todas as variáveis do seu arquivo .env para dentro do container
+    env_file:
+      - .env
     depends_on:
       - db
-    env_file:
-      - ./.env
-
-  db:
-    image: mongo:latest
-    volumes:
-      - mongo_data:/data/db
 
 volumes:
-  mongo_data:
+  mongodb_data:

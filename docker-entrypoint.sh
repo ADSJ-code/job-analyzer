@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
-sleep 5
+if [ -f tmp/pids/server.pid ]; then
+  rm tmp/pids/server.pid
+fi
 
-exec "$@"
+exec "${@}"

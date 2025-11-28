@@ -1,3 +1,17 @@
+development:
+  clients:
+    default:
+      uri: <%= ENV.fetch('MONGODB_URL') { 'mongodb://localhost:27017/job_analyzer_development' } %>
+      options:
+        server_selection_timeout: 5
+
+test:
+  clients:
+    default:
+      uri: <%= ENV.fetch('MONGODB_URL') { 'mongodb://localhost:27017/job_analyzer_test' } %>
+      options:
+        server_selection_timeout: 5
+
 production:
   clients:
     default:

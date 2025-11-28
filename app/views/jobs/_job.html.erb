@@ -1,32 +1,29 @@
-<article id="<%= dom_id job %>">
-  <header>
-    <div class="grid">
-      <div style="flex: 0 0 80px; display: flex; align-items: center; justify-content: center;">
-        <% if job.company_logo_url.present? && job.company_logo_url.to_s.start_with?('http') %>
-          <%# O referrerpolicy é o segredo para a imagem aparecer %>
-          <%= image_tag job.company_logo_url, 
-                alt: "#{job.company_name} logo", 
-                style: "max-width: 100%; max-height: 60px; border-radius: 4px;", 
-                referrerpolicy: "no-referrer" %>
-        <% else %>
-          <div style="width: 60px; height: 60px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 1.5rem;">
-            🏢
-          </div>
-        <% end %>
-      </div>
-
-      <div>
-        <h5 style="margin-bottom: 5px;"><%= job.title %></h5>
-        <small style="color: #555;">
-          <strong><%= job.company_name %></strong>
-        </small>
-        <br>
-        <small>📍 <%= job.location %></small>
-      </div>
+<article class="job-card" id="<%= dom_id job %>">
+  
+  <div class="card-body">
+    <div class="logo-box">
+      <% if job.company_logo_url.present? && job.company_logo_url.to_s.start_with?('http') %>
+        <%= image_tag job.company_logo_url, 
+              alt: "#{job.company_name} logo", 
+              class: "logo-img",
+              referrerpolicy: "no-referrer" %>
+      <% else %>
+        <span style="font-size: 2.5rem;">🏢</span>
+      <% end %>
     </div>
-  </header>
 
-  <footer>
-    <%= link_to "View Details", job, role: "button", class: "outline secondary", style: "width: 100%;" %>
+    <hgroup style="margin-bottom: 0;">
+      <h5 style="margin-bottom: 0.5rem; font-weight: bold;"><%= job.title %></h5>
+      <h6 style="color: var(--muted-color);"><%= job.company_name %></h6>
+    </hgroup>
+    
+    <small style="margin-top: 1rem; display: block; color: var(--muted-color);">
+      📍 <%= job.location %>
+    </small>
+  </div>
+
+  <footer class="card-footer">
+    <%= link_to "View Details", job, role: "button", class: "contrast outline" %>
   </footer>
+
 </article>

@@ -1,0 +1,14 @@
+pt:
+  app_name: "Job Analyzer"
+  subtitle: "Monitor de Vagas em Tempo Real"
+  platform_badge: "Via Google Jobs"
+  
+  actions:
+    details: "Ver Detalhes"
+    apply: "Aplicar Agora"
+    unavailable: "Indisponível"
+  
+  empty:
+    title: "Banco de Dados Vazio"
+    text: "O Robô ainda não buscou nenhuma vaga."
+    instruction: "Rode o comando de importação no terminal."

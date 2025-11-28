@@ -1,3 +1,5 @@
+require 'google_search_results'
+
 namespace :job_importer do
   desc "Search for jobs via API and enrich company data"
   task find_and_enrich: :environment do
@@ -5,7 +7,7 @@ namespace :job_importer do
 
     query = ENV.fetch('JOB_QUERY', 'Ruby on Rails developer')
     gl_location = ENV.fetch('JOB_LOCATION_GL', 'br')
-    hl_language = ENV.fetch('JOB_LOCATION_HL', 'pt') # Language of the results, not the logs
+    hl_language = ENV.fetch('JOB_LOCATION_HL', 'pt')
 
     puts "--- Phase 1: Searching for '#{query}' jobs (Location: #{gl_location}, Language: #{hl_language})..."
     
@@ -17,12 +19,12 @@ namespace :job_importer do
       api_key: ENV['SERPAPI_KEY']
     }
     
-    # Assuming SerpApiSearch is a wrapper or the gem class available in your env
-    jobs_search = SerpApiSearch.new(jobs_search_params)
+    # A classe da gema antiga é GoogleSearch
+    jobs_search = GoogleSearch.new(jobs_search_params)
     jobs_results = jobs_search.get_hash
 
     unless jobs_results[:jobs_results]
-      puts "❌ No jobs found."
+      puts "❌ No jobs found (Check API Key or Query)."
       next
     end
 
@@ -55,7 +57,7 @@ namespace :job_importer do
         api_key: ENV['SERPAPI_KEY']
       }
       
-      company_search = SerpApiSearch.new(company_search_params)
+      company_search = GoogleSearch.new(company_search_params)
       company_results = company_search.get_hash
 
       company_website = company_results.dig(:knowledge_graph, :website)

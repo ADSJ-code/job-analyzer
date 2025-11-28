@@ -6,10 +6,82 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <style>
+      /* --- ESTILOS PERSONALIZADOS DO JOB ANALYZER --- */
+      
+      /* Garante que a grid do Pico use a altura total */
+      .grid {
+        align-items: stretch; /* Estica os cards para terem a mesma altura */
+      }
+
+      /* O Card Principal */
+      .job-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #1b202b; /* Fundo escuro elegante */
+        border: 1px solid #374151;
+        padding: 0; /* Remove padding padrão para controlar melhor */
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      /* Área de Conteúdo (Logo + Texto) */
+      .card-body {
+        padding: 1.5rem;
+        flex-grow: 1; /* Empurra o rodapé para baixo */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      /* Box da Logo (Branco para contraste) */
+      .logo-box {
+        background-color: white;
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        padding: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+
+      /* Texto */
+      .job-title {
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+      }
+
+      .job-company {
+        color: #9ca3af; /* Cinza azulado claro */
+        font-size: 0.9rem;
+      }
+
+      /* Rodapé do Card (Botão) */
+      .card-footer {
+        padding: 1rem;
+        background-color: #252a37; /* Um pouco mais claro que o card */
+        border-top: 1px solid #374151;
+      }
+
+      .card-footer a {
+        width: 100%; /* Botão ocupa largura total */
+        margin-bottom: 0;
+      }
+    </style>
   </head>
 
   <body>
